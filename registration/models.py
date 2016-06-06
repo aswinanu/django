@@ -35,9 +35,9 @@ class User(AbstractBaseUser):
     """
     user_id = models.AutoField(primary_key=True)
     user_first_name = models.CharField(_('First Name'), max_length=32, blank=True, null=True,
-                                  validators=[RegexValidator(regex='^[A-Za-z]*$')])
+                                       validators=[RegexValidator(regex='^[A-Za-z]*$')])
     user_last_name = models.CharField(_('Last Name'), max_length=32, blank=True, null=True,
-                                    validators=[RegexValidator(regex='^[A-Za-z]*$')])
+                                      validators=[RegexValidator(regex='^[A-Za-z]*$')])
     email = models.EmailField(_('Email'), db_index=True, unique=True)
     user_dob = models.DateField(_('Birth Date'), blank=True, null=True)
     user_gender = models.CharField(_('Gender'), max_length=1, choices=GENDER, blank=True, null=True)
@@ -107,8 +107,8 @@ class Course(models.Model):
     course_language = models.CharField(_('Course Language'), max_length=25, choices=LANGUAGE, blank=False, unique=False)
     course_difficulty = models.CharField(_('Course Difficulty'), max_length=20, choices=DIFFICULTY, blank=False, unique=False)
     course_fees = models.IntegerField(_('Course Fees'),
-                                  validators=[MaxValueValidator(99999),MinValueValidator(0)],
-                                  help_text=_('5 digits maximum'), blank=True, null=True)
+                                      validators=[MaxValueValidator(99999),MinValueValidator(0)],
+                                      help_text=_('5 digits maximum'), blank=True, null=True)
     course_created = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
     course_user = models.ForeignKey(User, blank=False, null=False)
@@ -200,8 +200,8 @@ class CourseModules(models.Model):
     module_name = models.CharField(_('Module Name'), max_length=100, blank=False, unique=True)
     module_description = models.CharField(_('Module Description'), max_length=1000, blank=True, null=True)
     module_duration = models.IntegerField(_('Duration of module'),
-                                  validators=[MaxValueValidator(100),MinValueValidator(0)],
-                                  help_text=_('3 digits maximum'), blank=True, null=True)
+                                          validators=[MaxValueValidator(100),MinValueValidator(0)],
+                                          help_text=_('3 digits maximum'), blank=True, null=True)
 
     def __unicode__(self):
         return self.course.course_name + '-' + self.module_name
@@ -236,15 +236,26 @@ class Solution(models.Model):
     solution_platform = models.CharField(_('Platform'), max_length=20, choices=PLATFORM, blank=True, null=True)
     solution_contact_email = models.CharField(_('Contact Email'), max_length=100, blank=False, unique=False)
     solution_contact_phone = models.IntegerField(_('Contact Number'),
-                                  validators=[MaxValueValidator(99999999999),MinValueValidator(100000000)],
-                                  help_text=_('10 digits maximum'), blank=True, null=True)
+                                                 validators=[MaxValueValidator(99999999999),MinValueValidator(100000000)],
+                                                 help_text=_('10 digits maximum'), blank=True, null=True)
     solution_deadline = models.DateField(_('Deadline of Submission'), blank=True, null=True)
     solution_budget = models.IntegerField(_('Solution Budget'),
-                                  validators=[MaxValueValidator(99999999),MinValueValidator(0)],
-                                  help_text=_('8 digits maximum'), blank=True, null=True)
+                                          validators=[MaxValueValidator(99999999),MinValueValidator(0)],
+                                          help_text=_('8 digits maximum'), blank=True, null=True)
     solution_description = models.CharField(_('Description'), max_length=1000, blank=True, null=True)
     solution_created = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.solution_name
+
+
+class Chocolate(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(_('Chocolate Name'),max_length=100,blank=True )
+    description = models.CharField(_('Chocolate Description'),max_length=1000,blank=True )
+    manufacturer = models.CharField(_('Chocolate Manufacturer'),max_length=100,blank=True )
+    price = models.IntegerField(_('Chocolate Price'),
+                                validators=[MaxValueValidator(1000), MinValueValidator(0)],
+                                help_text=_('4 digits maximum'), blank=True, null=True)
+
