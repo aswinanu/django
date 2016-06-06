@@ -7,7 +7,9 @@ from registration.models import *
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
-   url(r'^$', UserRegistrationView.as_view(), name='register_user'),
-   url(r'^user/success/', TemplateView.as_view(template_name='sucess.html'),
-       name='page'),
-   url( r'^chocolate/add/', AddChocolateView.as_view(), name="add_chocolate")]
+    url(r'^$', UserRegistrationView.as_view(), name='register_user'),
+    url(r'^user/success/', TemplateView.as_view(template_name='sucess.html'),
+        name='page'),
+    url( r'^chocolate/add/', AddChocolateView.as_view(), name="add_chocolate"),
+    url(r'^chocolate/list/', ListChocolateView.as_view(), name="list_chocolate")
+]

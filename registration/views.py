@@ -39,3 +39,8 @@ class AddChocolateView(FormView):
             form.save()
             return FormView.form_valid(self, form)
 
+class ListChocolateView(ListView):
+    template_name='list_chocolate.html'
+
+    def get_queryset(self):
+        return Chocolate.objects.all()
