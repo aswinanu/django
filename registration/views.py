@@ -7,8 +7,17 @@ from django.views.generic.edit import FormView, UpdateView
 from django.core.urlresolvers import reverse_lazy
 from forms import UserRegistrationForm
 from forms import ChocolateAddForm
-class Home(TemplateView):
+from django.views.generic import ListView
+from models import Chocolate
+
+
+class Home(ListView):
     template_name='index.html'
+
+
+    def get_queryset(self):
+        return Chocolate.objects.all()
+
 
 # Create your views here.
 class UserRegistrationView(AnonymousRequiredMixin, FormView):
