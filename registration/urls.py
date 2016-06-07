@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'^user/success/', TemplateView.as_view(template_name='sucess.html'),
         name='page'),
     url( r'^chocolate/add/', AddChocolateView.as_view(), name="add_chocolate"),
-    url(r'^chocolate/list/', ListChocolateView.as_view(), name="list_chocolate")
-]
+    url(r'^chocolate/list/', ListChocolateView.as_view(), name="list_chocolate"),
+
+    url( r'^chocolate/info/(?P<choco_id>\d+)/$', ChocolateDetailsView.as_view(), name="chocolate_info")]
