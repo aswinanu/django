@@ -13,4 +13,5 @@ urlpatterns = [
     url( r'^chocolate/add/', AddChocolateView.as_view(), name="add_chocolate"),
     url(r'^chocolate/list/', ListChocolateView.as_view(), name="list_chocolate"),
 
-    url( r'^chocolate/info/(?P<choco_id>\d+)/$', ChocolateDetailsView.as_view(), name="chocolate_info")]
+    url( r'^chocolate/info/(?P<choco_id>\d+)/$', ChocolateDetailsView.as_view(), name="chocolate_info"),
+    url(r'^user/profile/edit/$', UserProfileUpdateView.as_view(), name='user_profile_update'),]
