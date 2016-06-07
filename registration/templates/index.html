@@ -44,6 +44,7 @@
     <li>
     <div class="btn-group">
             <a class="btn-new btn-nav btn-white" data-toggle="dropdown">
+            <li><a href="{%  url 'user_profile_update' %}">UPDATE PROFILE</a></li>
             <li><a href="{%  url 'logout' %}">LOGOUT</a></li>
             {% if request.user.user_first_name %}
     {{ request.user.user_first_name }}
@@ -77,50 +78,15 @@
 
 
 
-            <div class="col-md-8 col-md-offset-2 well">
-            <table class="table table-hover table-bordered table-responsive">
-            <thead>
-            <tr>
-            <th>
-            Name
-            </th>
-            <th>
-            Details
-            </th>
-            <th>
-            manufacture
-            </th>
-            <th>
-            Price
-            </th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for item in object_list %}
-    <tr>
-    <td> {{ item.name }} </td>
-    <td> {{ item.details }}</td>
-    <td> {{ item.manufacture }}</td>
-    <td> {{ item.price }}</td>
-    </tr>
-    {% endfor %}
-    </tbody>
-    </table>
-    </div>
-
-
-
-
-
-    {% if user.is_anonymous %}
-
-
-    {% else %}
-
-    <div class="col-md-6 col-md-offset-5" style=" padding-top: 10%">
+            <div class="col-md-6 col-md-offset-5" style=" padding-top: 10%">
             <a href="{%  url 'add_chocolate' %}"><button class="btn btn-danger">ADD A CHOCOLATE</button></a>
     </div>
-    {% endif %}
+
+
+    <div class="col-md-6 col-md-offset-5" style=" padding-top: 10%">
+            <a href="{%  url 'list_chocolate' %}"><button class="btn btn-danger">LIST OF CHOCOLATE</button></a>
+    </div>
+
 
 
     </body>
